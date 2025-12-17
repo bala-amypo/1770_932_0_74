@@ -5,5 +5,5 @@ import com.example.demo.entity.StudentEntity;
 public interface StudentService {
 
     public StudentEntity addStudents(StudentEntity student);
-
+    public List<StudentEntity> getstudents();
 }
