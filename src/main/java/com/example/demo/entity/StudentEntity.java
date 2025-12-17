@@ -13,5 +13,25 @@ public class StudentEntity {
     private String name;
     private String email;
     private float cgpa;
+    
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setName(String email){
+        this.email = email;
+    }
+    public void setCgpa(float cgpa){
+        this.cgpa = cgpa;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public String getEmail(){
+        return this.email;
+    }
+    public float getCgpa(){
+        return this.cgpa;
+    }
+    
 
 }
