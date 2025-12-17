@@ -12,7 +12,7 @@ public class StudentEntity {
     private Long id;
     private String name;
     private String email;
-    private float cgpa;
+    private float cgpa;     b    
     
     public StudentEntity(Long id,String name,String email,float cgpa){
         this.id = id;
