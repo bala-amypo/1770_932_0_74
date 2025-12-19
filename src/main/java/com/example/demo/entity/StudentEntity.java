@@ -5,7 +5,6 @@ import jakarta.validation.constraints.*;
 import org.springframework.validation.annotation.Validated;
 
 @Entity
-@Table(name = "students")
 @Validated
 public class Student {
 
