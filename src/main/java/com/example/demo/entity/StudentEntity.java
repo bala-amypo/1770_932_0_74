@@ -10,12 +10,22 @@ public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+     @NotBlank
     private String name;
+
+    @NotBlank
+    @Email
     private String email;
-    private float cgpa;   
-    
-    public StudentEntity(String name,String email,float cgpa){
-        // this.id = id;
+
+    @DecimalMin(value = "0.0")
+    @DecimalMax(value = "10.0")
+    private float cgpa;
+
+    public StudentEntity(
+            @NotBlank String name,
+            @Email @NotBlank String email,
+            @DecimalMin("0.0") @DecimalMax("10.0") float cgpa
+    ) {
         this.name = name;
         this.email = email;
         this.cgpa = cgpa;
