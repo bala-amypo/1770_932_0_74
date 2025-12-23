@@ -30,6 +30,7 @@ public class StudentController {
         );
     }
 
+
     @GetMapping
     public List<StudentEntity> getAllStudents() {
         return service.getAllStudents();
