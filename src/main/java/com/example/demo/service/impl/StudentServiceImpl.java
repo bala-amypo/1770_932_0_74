@@ -2,7 +2,6 @@ package com.example.demo.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.StudentEntity;
@@ -12,16 +11,19 @@ import com.example.demo.service.StudentService;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    @Autowired
-    StudentRepository repo;
+    private final StudentRepository repo;
+
+    public StudentServiceImpl(StudentRepository repo) {
+        this.repo = repo;
+    }
 
     @Override
-    public StudentEntity addStudents(StudentEntity student) {
+    public StudentEntity saveStudent(StudentEntity student) {
         return repo.save(student);
     }
 
     @Override
-    public List<StudentEntity> getStudents() {
+    public List<StudentEntity> getAllStudents() {
         return repo.findAll();
     }
 
@@ -31,8 +33,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void deleteStudentById(Long id) {
-        repo.deleteById(id);
+    public StudentEntity updateStudent(Long id, StudentEntity student) {
+        StudentEntity existing = repo.findById(id).orElse(null);
+        if (existing == null) return null;
+
+        existing.setName(student.getName());
+        existing.setEmail(student.getEmail());
+        return repo.save(existing);
     }
 
+    @Override
+    public void deleteStudent(Long id) {
+        repo.deleteById(id);
+    }
 }

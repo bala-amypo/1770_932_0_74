@@ -2,11 +2,10 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import org.springframework.validation.annotation.Validated;
 
 @Entity
-@Validated
-public class Student {
+@Table(name = "students")
+public class StudentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,18 +18,15 @@ public class Student {
     @Email(message = "Invalid email format")
     private String email;
 
-    public Student(
-            Long id,
-            @NotBlank(message = "Name cannot be empty") String name,
-            @NotBlank(message = "Email cannot be empty")
-            @Email(message = "Invalid email format") String email
-    ) {
+    // Required by JPA
+    public StudentEntity() {
+    }
+
+    public StudentEntity(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
     }
-
-    public Student() {}
 
     public Long getId() {
         return id;
